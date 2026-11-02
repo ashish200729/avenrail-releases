@@ -2,7 +2,7 @@
 
 A desktop workspace for your coding agents. This repository publishes Avenrail's installers and the feed the app reads to update itself, and it is where to report problems.
 
-**[Download the latest release](https://github.com/ashish200729/avenrail-releases/releases/latest)**
+**[Download the latest release](https://github.com/ashish200729/avenrail-releases/releases/latest)** · [What's new](CHANGELOG.md)
 
 | Mac | File |
 | --- | --- |
