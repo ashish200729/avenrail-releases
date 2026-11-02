@@ -1,0 +1,50 @@
+# Publishes an Avenrail release to this repository.
+#
+# It only ever runs when started by hand, from the source repository with
+# `npm run release:publish -- <version>` (or `npm run release:dry-run`), or
+# from the Actions tab here. There is no push, tag, or schedule trigger.
+#
+# The build steps live with the source code, in
+# ashish200729/Avenrail/.github/workflows/build-release.yml.
+
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to publish, such as 0.1.0. Tag v<version> must already be pushed to ashish200729/Avenrail.
+        required: true
+        type: string
+      dry_run:
+        description: Dry run. Build and verify every package, publish nothing.
+        required: false
+        type: boolean
+        default: false
+      ref:
+        description: Dry runs only. Source branch, tag, or commit to build. Empty builds the v<version> tag.
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+
+# One release at a time, and never cancel one halfway through publishing.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Avenrail ${{ inputs.version }}${{ inputs.dry_run && ' (dry run)' || '' }}
+    permissions:
+      contents: write
+    uses: ashish200729/Avenrail/.github/workflows/build-release.yml@main
+    with:
+      version: ${{ inputs.version }}
+      ref: ${{ inputs.ref }}
+      dry_run: ${{ inputs.dry_run }}
+    secrets:
+      TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+      TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
