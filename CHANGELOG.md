@@ -2,6 +2,36 @@
 
 Every Avenrail release, newest first. Download the latest from the [releases page](https://github.com/ashish200729/avenrail-releases/releases/latest).
 
+## [0.1.1] - 2026-11-04
+
+**See what your agents use, and watch their edits land.** This update adds a Usage page for Claude Code and Codex, and shows file changes as live cards in the chat.
+
+### New
+
+- **Usage.** A new chart button beside Settings shows your cost, tokens and limits.
+- **Live edit cards.** See each file change as it happens, with the lines added and removed.
+
+### Usage
+
+- Switch between Cost, Tokens and Limits, over the past 24 hours, 7, 30 or 90 days, or your whole history.
+- Cost shows what your usage would cost at standard API list prices, the extra for Fast mode, what caching saved, a daily chart for each provider, and a breakdown by model or by day.
+- Cost is an estimate of value, not a bill. Subscriptions are charged differently, and higher rates for very long contexts and hour-long cache writes aren't included.
+- Limits shows each signed-in account's plan, how much of its 5-hour, weekly and per-model limits is left, whether you're ahead of pace, and when they reset. For Codex you also see credits, banked resets and lifetime activity.
+- Totals are counted from the session logs on your Mac. Once Avenrail has counted a transcript, its totals stay in your history, even after Claude Code deletes it.
+
+### Live edit cards
+
+- When an agent edits or writes a file, the chat shows a card with the file name and the lines added and removed.
+- Claude Code, Pi and omp stream an edit while they write it, so the code types itself in as it arrives. With agents that hand over a finished edit, it types in when it lands.
+- Once the change has landed, the card rests open a moment and folds to one line. Click it to see the change again, or click the file name to open its diff.
+- A patch across several files, or several replacements in one file, shares one card. A very long change says how many lines it leaves out.
+- A shell command that only writes files, such as `cat > file <<EOF`, gets a card too. Anything that does more stays a command, so you always see that it will run.
+
+### Also improved
+
+- Token counts read in thousands, millions and billions (K, M, B) in every language setting.
+- Subagent rows line up with the other work in the chat.
+
 ## [0.1.0] - 2026-11-02
 
 **Avenrail launches.** One calm, native workspace for the coding agents you already use.
@@ -30,4 +60,5 @@ Every Avenrail release, newest first. Download the latest from the [releases pag
 - Coming from a preview build? Your conversations, worktrees and settings carry over on first launch, and the preview's own data is left untouched. Install the remote host again on machines you connected to before.
 - Windows and Linux builds are coming later.
 
+[0.1.1]: https://github.com/ashish200729/avenrail-releases/releases/tag/v0.1.1
 [0.1.0]: https://github.com/ashish200729/avenrail-releases/releases/tag/v0.1.0
